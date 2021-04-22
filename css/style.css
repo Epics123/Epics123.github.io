@@ -476,6 +476,11 @@ b i:last-child {
     animation: finger 2s infinite;
 }
 
+.scroll-text
+{
+    margin-left: 20px;
+}
+
 @-webkit-keyframes intro {
     0% {
         opacity: 0;
@@ -540,7 +545,7 @@ b i:last-child {
 .box-words-wrapper b {
     display: inline-block;
     position: absolute;
-    white-space: nowrap;
+    white-space: pre;
     left: 0;
     top: 0;
 }
@@ -1111,6 +1116,7 @@ textarea:focus {
 
 .cat-ul {
     padding-left: 0;
+    margin-left: 25px;
     list-style: none
 }
 
