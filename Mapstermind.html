@@ -109,6 +109,35 @@
             </p>
             <br>
 
+            <h5>Recent Updates</h5>
+            <br>
+
+            <p>
+                Recently I have been working on some quality of life improvements to Mapstermind that we did not have time to implement previously. One of which is a simple highlight post processing effect whenever a pieceling is obstucted by
+                an object. The color of this highlight can be changed through a material instance, and each player will have their own color.
+             </p>
+
+             <br>
+
+            <img src="gif/pieceling_highlight.gif" width="345" height="195">            
+
+            <br>
+            <br>
+
+            <p>
+                The shader itself is not too complicated. I first start by getting a custom stencil from the scene texture and mask the red channel and dividing it by 255. That value is then bit masked with a constant value representing the custom
+                depth stencil index, the result of which will be used to interpolate between different highlight colors. After that I remove the object to be highlighted from the scene depth by subtracting the red channels of the custom depth buffer 
+                and the scene depth buffer. Anything not in the custom depth buffer will be ignored. I then calculate the amount to blend the highlight color and scene texture based on the result of the scene depth removal and a simple range
+                calculation. Finally the highlight color is blended with the scene texture to produce the desired highlight effect. 
+            </p>
+
+            <br>
+
+            <a href="img/portfolio/XrayScreenshot.png"><img src="img/portfolio/XrayScreenshot.png" width="680" height="383"></a>
+            
+            <br>
+            <br>
+
             <h5>Time Frame</h5>
             <p>Aug 2021 - Present</p>
 
@@ -158,13 +187,20 @@
 
             <h5>Team</h5>
             <ul class="cat-ul">
-                <li> Ethan Heil - Lead Programmer, Systems Programmer, UI Programmer, Graphics Programmer, Animation Programmer</li>
-                <li> Daniel (Scheoney) Schoenfeld - Gameplay Programmer, Sound Programmer, Sound Designer</li>
-                <li> Evan Barker- Level Designer, Systems Designer</li>
-                <li> Eddie Juarez - UI Designer, Sound Designer, Systems Designer, Animator</li>
-                <li> Sophia White - Character Artist, Rigging Artist, Character Animator</li>
-                <li> Lake Gildner Blinn - Environment Aritst</li>
-                <li> John Seymour - Lead Producer, QA Lead</li>
+                <li> <a href="http://www.ethanheil.com" target="blank">Ethan Heil</a> - Lead Programmer, Systems Programmer, UI Programmer, Graphics Programmer, Animation Programmer</li>
+                <li> <a href="https://www.linkedin.com/in/daniel-schoenfeld/" target="blank">Daniel (Scheoney) Schoenfeld</a> - Gameplay Programmer, Sound Programmer, Sound Designer</li>
+                <li> <a href="https://www.ollimachina.com" target="blank">Olli Machina</a> - Gameplay Programmer, Systems Programmer, Sound Designer</li>
+                <li> <a href="https://alexjaegers.wordpress.com" target="blank">Alex Jaeger</a> - Gameplay Programmer, UI Programmer</li>
+                <li> <a href="https://www.linkedin.com/in/eddie-r-juarez/" target="blank">Eddie Juarez</a> - Lead Designer, UI Designer, Sound Designer, Systems Designer, Animator</li>
+                <li> <a href="https://ejhbarker.wixsite.com/evanbarker" target="blank">Evan Barker</a> - Level Designer, Systems Designer</li>
+                <li> <a href="https://james-ofori.com" target="blank">James Ofori</a> - Systems Designer</li>
+                <li> <a href="https://www.linkedin.com/in/matthew-laflamme/" target="blank">Matthew Laflamme</a> - Level Designer, Systems Designer</li>
+                <li> <a href="https://www.linkedin.com/in/sophia-white-sw/" target="blank">Sophia White</a> - Lead Artist, Character Artist, Rigging Artist, Character Animator</li>
+                <li> <a href="https://lakehouse.artstation.com" target="blank">Lake Gildner Blinn</a> - Environment Aritst</li>
+                <li> <a href="https://www.linkedin.com/in/sasha-chacon/" target="blank">Sasha Chacon</a> - Environment Aritst</li>
+                <li> <a href="https://www.linkedin.com/in/john-seymour8/" target="blank">John Seymour</a> - Lead Producer</li>
+                <li> <a href="https://www.linkedin.com/in/kinseybowensmith/" target="blank">Kinsey Bowensmith</a> - Marketing Lead, Producer</li>
+                <li> <a href="https://www.linkedin.com/in/jackson-leblanc/" target="blank">Jackson Leblanc</a> - QA Lead</li>
             </ul>
 
             <br>
