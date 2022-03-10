@@ -89,7 +89,7 @@
     <!-- main-container -->
     <div class="container main-container">
         <div class="col-md-12">
-            <iframe width="1120" height="630" src="https://www.youtube.com/embed/E0KSCArlMoY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="1120" height="630" src="https://www.youtube.com/embed/whZHdgf_eL4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <div class="h-30"></div>
         </div>
 
@@ -104,21 +104,57 @@
             <p>
                 This is a project that I have been working on for my GPR-470 Game Programmer's Portfolio class with my friend and classmate <a href="https://www.henrychronowski.com/index.html" target="blank">Henry Chronowski</a>. The idea behind this project was to build a renderer from scratch using Vulkan that is capable of 
                 rendering a simple 3D mesh. We wanted to explore and gain experience using a modern graphics API that we had not yet been exposed to, as well as gain practical knowledge from architecting a real-time graphics application from the ground up.
-                We would like to expand this application further throughout the semester, with some of our ideas including: adding lighting support, camera movement, basic editor interface, and skeletal mesh support. Above you can see the result we have 
-                achieved over the past few weeks - a Utah Teapot loaded from a file, successfully rendering in 3D space with working texture mapping.
+                We would like to expand this application further throughout the semester, with some of our ideas including: adding lighting support, camera movement, basic editor interface, and skeletal mesh support.
             </p>
-            <p>
-                For this first portion of the project, I was mainly resposible for laying most of the groundwork fro the renderer. I worked primarily on setting up the main graphics pipeline using the vulkan API, along with implemening support for vertex, index,
-                and uniform buffers.
-            </p>
+
             <br>
 
-            <h5>Challenges</h5>
+            <h5>Camera Controls, Lighting, and Wireframe (2/13/22 - 3/9/22)</h5>
+            <p>
+                Over the past few weeks we've been focusing on adding three main features to our renderer: camera controls, basic lighting, and the option to toggle wireframe rendering. I was responsible for getting the camera controls and wireframe rendering
+                mode working.
+            </p>
+            <br>
+            <h6>Camera Rotation</h6>
+            <img src="gif/CameraRotate.gif" width="640" height="360"> 
+            
+            <br>
+            <br>
+
+            <p>
+                I originally started with an euler based system for the camera rotations, but this turned out to not be an ideal solution. One of the biggest drawbacks of an euler based system is that it is very easy to run into gimbal lock.
+                Gimbal lock occurs when two axes of rotation align, effectively locking out an axis or rotation. This presents a major problem when working with a 3D camera, so I decieded to switch the camera over to using quaternions instead of 
+                euler angles. Once that was working, I added in a bit of smoothing to the camera so it wouldn't look jittery when moving around, and the result was a great success!
+            </p>
+
+            <br>
+
+            <h6>Wireframe Mode</h6>
+            <img src="gif/WireframeToggle.gif" width="640" height="360"> 
+
+            <br>
+            <br>
+
+            <p>
+                Getting wireframe rendering to work was actually much simpler that I thought it would be. It effectively boiled down to adding a second pipeline with the rasterization mode set to VK_POLYGON_MODE_LINE. This meant that I 
+                had to abstract the pipeline creation into its own class so that I could easily make multiple of them and adjust their parameters. In the future I would like to have this pipeline use a different shader from the default, so that 
+                the wireframe really stands out.
+            </p>
+
+            <br>
+
+            <h5>Laying the groundwork (1/23/22 - 2/9/22)</h5>
+            <p>
+                For this first portion of the project, I was mainly resposible for laying most of the groundwork for the renderer. I worked primarily on setting up the main graphics pipeline using the vulkan API, along with implemening support for vertex, index,
+                and uniform buffers. In conbination with Henry's work, we were able to get a Utah Teapot loaded from a file and successfully rendering in 3D space with working texture mapping.
+            </p>
             <p>
                 The biggest challenge for me these past few weeks has been trying to wrap my head around and make sure I understand all of the setup involved when using vulkan. The large majority of work that I have done was all setup and due to how 
                 explicit vulkan is, I found myself doubling back constantly to make sure what I was doing was correct. Another major challenge I had to face was debugging major bugs or crashes with limited to no error messages. While vulkan does offer 
                 some form of error catching, there were many times where the program would crash for no reason. There were many times where I would have to carfully step through the code and retrace my steps to figure out what was wrong.
             </p>
+            <br>
+            
 
 
             <br>
@@ -141,6 +177,8 @@
                 <li><i class="ion-ios-circle-filled"></i> Vertex Buffer Implementaion</li>
                 <li><i class="ion-ios-circle-filled"></i> Index Buffer Implementaion</li>
                 <li><i class="ion-ios-circle-filled"></i> Uniform Buffer Implementaion</li>
+                <li><i class="ion-ios-circle-filled"></i> Camera Controls</li>
+                <li><i class="ion-ios-circle-filled"></i> Wireframe Rendering Mode</li>
             </ul>
 
             <br>
