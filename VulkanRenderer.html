@@ -89,7 +89,7 @@
     <!-- main-container -->
     <div class="container main-container">
         <div class="col-md-12">
-            <iframe width="1120" height="630" src="https://www.youtube.com/embed/YYZDoxtpmCs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="1120" height="630" src="https://www.youtube.com/embed/KzLoSPw8vig" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <div class="h-30"></div>
         </div>
 
@@ -102,11 +102,48 @@
         <div class="col-md-9">
             <h5>Overview</h5>
             <p>
-                This is a project that I have been working on for my GPR-470 Game Programmer's Portfolio class with my friend and classmate <a href="https://www.henrychronowski.com/index.html" target="blank">Henry Chronowski</a>. The idea behind this project was to build a renderer from scratch using Vulkan that is capable of 
+                This is a project that I have been working on for my GPR-470 Game Programmer's Portfolio class with my friend and classmate <a href="https://henrychronowski.com/projects/2022/05/02/vulkan.html" target="blank">Henry Chronowski</a>. The idea behind this project was to build a renderer from scratch using Vulkan that is capable of 
                 rendering a simple 3D mesh. We wanted to explore and gain experience using a modern graphics API that we had not yet been exposed to, as well as gain practical knowledge from architecting a real-time graphics application from the ground up.
                 We would like to expand this application further throughout the semester, with some of our ideas including: adding lighting support, camera movement, basic editor interface, and skeletal mesh support.
             </p>
 
+            <br>
+
+            <h5>Lighting Fixes, User Interface (3/11/22 - 5/5/22)</h5>
+            <p>
+                Over the past month or so, I have been working on a lot of backend changes to the renderer, most of which came from trying to implement phong lighting correctly. We had been hung up for weeks on
+                simply trying to get lighting data sent to the GPU correctly. After exploring many different avenues and reading countless sources online, I ran into a small aspect of Vulkan that I hadn't ever seen 
+                when working in other frameworks (though I was not building those frameworks from scratch so it may exist): memory alignment of buffers. Our main issue on the CPU side was that our uniform buffers were
+                not packed properly, and thus even though the correct data was being sent to the GPU, it arrived in a different organization than was expected, causing major issues when modifying the lighting data. 
+                The way to solve this problem is to simply pack the data according to Vulkan's specifications. This can be achieved in a few different ways. The first way is to use alignas() to force each member of 
+                the buffer to be aligned by 16 bytes. While this is handy it doesn't work in every situation, as it is possible to pack data too tightly. Another option is to use vec4s instead of vec3s in the uniform 
+                buffer, and just ignore any unneeded values in the shader. Obviously this method works best for vec3s and vec4s because vec4s are already aligned by 16 bytes, but doesn't really make sense for a vec2 
+                or scalar value. The final way is to just stick dummy padding variables in the buffer where needed. We used a combination of these methods to solve our problem, and since we were mostly working with 
+                vec3s, we just bumped them up to a vec4 and ignored the <i>w</i> component. In the future we will need to modify our light uniform buffer to hold a struct representing a light, so we can work on having
+                multiple lights in the scene.
+            </p>
+
+            <br>
+
+            <h6>Phong Lighting</h6>
+            <a href="img/portfolio/TeapotPhong.png"><img src="img/portfolio/TeapotPhong.png" width="640" height="360"> </a>
+
+            <br>
+            <br>
+
+            <p>
+                The other major feature I was working on was a user interface using the <a href="https://github.com/ocornut/imgui" target="blank">ImGui</a> library. ImGui is an incredibly useful library for setting 
+                up good looking UI very quickly. The most difficult thing I ran into when using this library was figuring out how to make it play nice with the existing architecture that I had, but once that problem 
+                was solved, the rest was pretty smooth sailing. Currently we have one window that displays debug information as well as scene data. In the future I think I will bring the scene section out into it's 
+                own window, and try to set up a scene hierarchy similar to what you may find in Unity or Unreal. For now the scene data allows the user to control the single light and camera in the scene.
+            </p>
+
+            <br>
+
+            <h6>ImGui Example</h6>
+            <a href="gif/TeapotImgui.gif"><img src="gif/TeapotImgui.gif" width="640" height="360"></a>
+
+            <br>
             <br>
 
             <h5>Camera Controls, Lighting, and Wireframe (2/13/22 - 3/9/22)</h5>
