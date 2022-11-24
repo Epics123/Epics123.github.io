@@ -89,7 +89,7 @@
     <!-- main-container -->
     <div class="container main-container">
         <div class="col-md-12">
-            <iframe width="1120" height="630" src="https://www.youtube.com/embed/KzLoSPw8vig" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="1120" height="630" src="https://www.youtube.com/embed/M_m5shuv3MU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <div class="h-30"></div>
         </div>
 
@@ -102,9 +102,33 @@
         <div class="col-md-9">
             <h5>Overview</h5>
             <p>
-                This is a project that I have been working on for my GPR-470 Game Programmer's Portfolio class with my friend and classmate <a href="https://henrychronowski.com/projects/2022/05/02/vulkan.html" target="blank">Henry Chronowski</a>. The idea behind this project was to build a renderer from scratch using Vulkan that is capable of 
-                rendering a simple 3D mesh. We wanted to explore and gain experience using a modern graphics API that we had not yet been exposed to, as well as gain practical knowledge from architecting a real-time graphics application from the ground up.
-                We would like to expand this application further throughout the semester, with some of our ideas including: adding lighting support, camera movement, basic editor interface, and skeletal mesh support.
+                This is a project that I started working on with my friend <a href="https://henrychronowski.com/projects/2022/05/02/vulkan.html" target="blank">Henry Chronowski</a> back in early 2022. We aimed to build a renderer from scratch using the Vulkan graphics API, and use it to grow
+                our knowledge about graphics programming. We wanted to explore and gain experience using a modern graphics API that we had not yet been exposed to, as well as gain practical knowledge from architecting a real-time graphics application from the ground up.
+                I still actively work on the project during my free time to brush up my skills or to try something new. There are a bunch of things I would like to add support for in the future, some of which beign: a material system, physically based rendering, ray-traced lighting, 
+                and skeletal animation.
+            </p>
+
+            <br>
+
+            <h5>Improved Blinn-Phong Lighting / Multiple Point Lights (11/5/22 - 11/15/22)</h5>
+            <p>
+                Previously our renderer could only support a single point light, but it now has the ability to support any number of point lights. I also updated our lighting to use Blinn-Phong shading instead of 
+                regular Phong. Each light's position and intensity can be controlled through our ImGui user interface.
+            </p>
+
+            <br>
+
+            <h6>Multiple Point Lights w/ Blinn-Phong</h6>
+            <a href="img/portfolio/MultiplePointLights.png"><img src="img/portfolio/MultiplePointLights.png" width="640" height="360"> </a>
+
+            <br>
+            <br>
+
+            <h5>Core Architecture Rework (9/3/22 - 11/15/22)</h5>
+            <p>
+                The past few months I have been reworking the core architecture of the renderer. Peviously, the way we strucutred our code made it difficult to implement new features and maintain the codebase. 
+                I mainly focused on abstracting most of the Vulkan specific code out of the main renderer itself, along with cleaning up some unecessary and unused code. This alone made it much easier to work 
+                within the engine.
             </p>
 
             <br>
@@ -202,20 +226,16 @@
             <br>
 
             <h5>Dev Environment</h5>
-            <p>Visual Studio 2019</p>
+            <p>Visual Studio 2019/2022</p>
 
             <br>
 
             <h5>My Contributions</h5>
             <ul class="cat-ul">
                 <li><i class="ion-ios-circle-filled"></i> Vulkan Setup and Initialization</li>
-                <li><i class="ion-ios-circle-filled"></i> Graphics Pipeline Setup</li>
-                <li><i class="ion-ios-circle-filled"></i> Build System Creation</li>
-                <li><i class="ion-ios-circle-filled"></i> Vertex Buffer Implementaion</li>
-                <li><i class="ion-ios-circle-filled"></i> Index Buffer Implementaion</li>
-                <li><i class="ion-ios-circle-filled"></i> Uniform Buffer Implementaion</li>
+                <li><i class="ion-ios-circle-filled"></i> Core Engine Architecture</li>
                 <li><i class="ion-ios-circle-filled"></i> Camera Controls</li>
-                <li><i class="ion-ios-circle-filled"></i> Wireframe Rendering Mode</li>
+                <li><i class="ion-ios-circle-filled"></i> Blinn-Phong Lighting Implementation</li>
             </ul>
 
             <br>
