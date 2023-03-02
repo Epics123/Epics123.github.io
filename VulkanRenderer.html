@@ -89,7 +89,7 @@
     <!-- main-container -->
     <div class="container main-container">
         <div class="col-md-12">
-            <iframe width="1120" height="630" src="https://www.youtube.com/embed/M_m5shuv3MU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="1120" height="630" src="https://www.youtube.com/embed/29OxtcJBcEE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <div class="h-30"></div>
         </div>
 
@@ -104,10 +104,36 @@
             <p>
                 This is a project that I started working on with my friend <a href="https://henrychronowski.com/projects/2022/05/02/vulkan.html" target="blank">Henry Chronowski</a> back in early 2022. We aimed to build a renderer from scratch using the Vulkan graphics API, and use it to grow
                 our knowledge about graphics programming. We wanted to explore and gain experience using a modern graphics API that we had not yet been exposed to, as well as gain practical knowledge from architecting a real-time graphics application from the ground up.
-                I still actively work on the project during my free time to brush up my skills or to try something new. There are a bunch of things I would like to add support for in the future, some of which beign: a material system, physically based rendering, ray-traced lighting, 
-                and skeletal animation.
+                I still actively work on the project during my free time to brush up my skills or to try something new. There are a bunch of things I would like to add support for in the future which can be found <a href="https://github.com/users/Epics123/projects/1" target="blank">here</a>.
+                Some of those new features include: a material system, physically based rendering, ray-traced lighting, and skeletal animation support.
             </p>
 
+            <br>
+
+            <h5>Multiple Render Passes / Rendering to a viewport / Gizmos (2/12/23 - Present)</h5>
+
+            <p>
+                I am currently working on getting my scene to render within an ImGui window, so that I can use the ImGuizmo library to render gizmos on selected objects in the scene. Initially this was supposed to be a very quick implementation before moving on to a material system, but I have since fallen into a massive rabbit 
+                hole trying to get this to work. The main issue that I have is that gizmos using the ImGuizmo library can only be rendered within an ImGui window, so I needed a way to capture my scene into a "texture"/framebuffer that I can send to ImGui to display. Welcome multi-pass rendering! This has 
+                been the main time sink for me so far. Render passes in Vulkan can get a bit complicated and it has taken some time to wrap my head around them. However, I was able to get multiple passes working! I currently have a render pass for the scene, and a render pass for all of the 
+                ImGui UI. The last thing that I think I need to do is take the result of the scene render pass and use it in the ImGui render pass. I haven't quite gotten that working yet, but when I do I'll be sure to update this page!
+            </p>
+
+            <br>
+
+            <h5>Rendering Textures / Viewports and Dockspaces (11/15/22 - 1/14/23)</h5>
+            <p>
+                Over the past couple of months I have been working on getting textures working with Vukan (as most of the previous texture work was scrapped during the architecture rework) as well as setting up dockspaces and viewports using ImGui. After a bit of trial and error I was able to 
+                get textures working with little issue. The only problem is that every object in the scene uses the same texture, which is why the next major feature I want to implement is a basic material system. Having a material system will allow me to customize the scene on a more granular 
+                level instead of a global one. As for dockspaces and viewports, thankfully they were fairly easy to implement since it was mostly usuing already established code from ImGui.
+            </p>
+
+            <br>
+
+            <h6>Textures / Grid</h6>
+            <a href="img/portfolio/TexturedGrid.png"><img src="img/portfolio/TexturedGrid.png" width="640" height="360"> </a>
+
+            <br>
             <br>
 
             <h5>Improved Blinn-Phong Lighting / Multiple Point Lights (11/5/22 - 11/15/22)</h5>
