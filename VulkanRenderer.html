@@ -89,7 +89,7 @@
     <!-- main-container -->
     <div class="container main-container">
         <div class="col-md-12">
-            <iframe width="1120" height="630" src="https://www.youtube.com/embed/29OxtcJBcEE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="1120" height="630" src="https://www.youtube.com/embed/6jltcKW4Wfk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <div class="h-30"></div>
         </div>
 
@@ -110,7 +110,17 @@
 
             <br>
 
-            <h5>Multiple Render Passes / Rendering to a viewport / Gizmos (2/12/23 - Present)</h5>
+            <h5>PBR Shading, Better Descriptor Sets, and Spot Lights (4/10/23 - 6/3/23)</h5>
+
+            <p>
+                I took a bit of a break from working on render pass stuff and decided to reorganize the way I was using descriptor sets. Previously I was only using a single descriptor set for everything, but as the project became more complex this became problematic.
+                I now support multiple descriptor sets, which makes it much easier to make more complex shaders. This allowed me to do things like using normal, height, ambient occlusion, and diffuse maps in my lighting shaders. I also upgraded my lighting from Blinn-Phong to a physically
+                based model. Additionally I implemented spot lights, which wasn't too bad as they were very similar to point lights. The next thing that I'd like to tackle is some sort of material system, or go back to shadow mapping.
+            </p>
+
+            <br>
+
+            <h5>Multiple Render Passes / Rendering to a viewport / Gizmos (2/12/23 - 4/31/23)</h5>
 
             <p>
                 I am currently working on getting my scene to render within an ImGui window, so that I can use the ImGuizmo library to render gizmos on selected objects in the scene. Initially this was supposed to be a very quick implementation before moving on to a material system, but I have since fallen into a massive rabbit 
@@ -260,8 +270,10 @@
             <ul class="cat-ul">
                 <li><i class="ion-ios-circle-filled"></i> Vulkan Setup and Initialization</li>
                 <li><i class="ion-ios-circle-filled"></i> Core Engine Architecture</li>
+                <li><i class="ion-ios-circle-filled"></i> Rendering pipeline setup</li>
                 <li><i class="ion-ios-circle-filled"></i> Camera Controls</li>
                 <li><i class="ion-ios-circle-filled"></i> Blinn-Phong Lighting Implementation</li>
+                <li><i class="ion-ios-circle-filled"></i> PBR Shading Implementation</li>
             </ul>
 
             <br>
