@@ -89,7 +89,7 @@
     <!-- main-container -->
     <div class="container main-container">
         <div class="col-md-12">
-            <iframe width="1120" height="630" src="https://www.youtube.com/embed/6jltcKW4Wfk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="1120" height="630" src="https://www.youtube.com/embed/Q5DvD-u8v5g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <div class="h-30"></div>
         </div>
 
@@ -106,6 +106,26 @@
                 our knowledge about graphics programming. We wanted to explore and gain experience using a modern graphics API that we had not yet been exposed to, as well as gain practical knowledge from architecting a real-time graphics application from the ground up.
                 I still actively work on the project during my free time to brush up my skills or to try something new. There are a bunch of things I would like to add support for in the future which can be found <a href="https://github.com/users/Epics123/projects/1" target="blank">here</a>.
                 Some of those new features include: a material system, physically based rendering, ray-traced lighting, and skeletal animation support.
+            </p>
+
+            <br>
+
+            <h5>Material System Progress, Descriptor Indexing, and Dynamic Uniform Buffers (6/4/23 - 8/2/23)</h5>
+            <p>
+                This is one of the largest steps forward I have taken while working on the renderer in a long time. Ever since starting this project I have struggled with how to properly manage descriptor sets and uniform buffers.
+                Thanks to a lot of research, and especially <a href="https://developer.nvidia.com/vulkan-shader-resource-binding" target="blank">this article</a> from NVIDIA, I was able to wrap my head around how descriptors 
+                and uniform buffers should be used. This was a significant step towards getting a working material system.
+            </p>
+            <p>
+                The next challege I needed to tackle was to allow objects to use different textures in their materials instead of sharing the same texture. To achieve this, I turned to descriptor indexing. Descriptor indexing
+                is quite handy, as it allows you to select a given resource bound to a descriptor set through an index. Instead of binding a single resource per descriptor binding, I can bind an array 
+                of recources and index into that array in a shader. For example I can bind an array of albedo textures to binding 0, and select which one I want by indexing into that array in a shader. I take this a step further
+                and do the same process for normal, ambient occlusion, roughness, and height maps as well. This allows me to change which textures a given object is using by sending a texture index to a shader as a push constant.
+            </p>
+            <p>
+                The last thing I needed to do was add support for PBR materials that did not require textures. To do this, I simply use another uniform buffer containing all of the information required by the PBR shader
+                (albedo color, roughness, ao, etc). The main issue I ran into was that I would need a unique uniform buffer for every object that used this material, which will become problematic and hard to manage for more complex scenes.
+                Welcome dynamic uniform buffers! Dynamic uniform buffers allow you to allocate one large uniform buffer to store data for multiple descriptor sets, which was exactly what I needed to make this work.
             </p>
 
             <br>
